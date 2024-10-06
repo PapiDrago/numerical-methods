@@ -5,14 +5,13 @@ function [x] = forward_substitution_method(L,b)
 %the syntax is function [output1, output2] = function_name(input1, input2)
     n = length(b); %size(b) returns a row vector with the number of rows and cols of b
     x = zeros(n, 1);
-    x(1) = b(1)/L(1,1);
-    sum = 0;
+    b(1) = b(1)/L(1,1);
     for i = 2:n
         for j = 1:i-1
-            sum = sum + L(i,j)*x(j);
+            b(i) = b(i) - L(i,j)*b(j);
         end
-        x(i)=(b(i)-sum)/L(i,i);
-        sum = 0;
+        b(i)=b(i)/L(i,i);
     end
+    x = b;
 end
-%the number of floating point operations is n^2 + n - 1.
+%the number of floating point operations is n^2.
