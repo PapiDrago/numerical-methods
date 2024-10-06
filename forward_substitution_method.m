@@ -15,3 +15,4 @@ function [x] = forward_substitution_method(L,b)
         sum = 0;
     end
 end
+%the number of floating point operations is n^2 + n - 1.
